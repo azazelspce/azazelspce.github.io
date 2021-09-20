@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+  <title>Cristian Sandoval-Pineda</title>
+  <meta charset = "UTF-8">
+
+  <link href = "http://fonts.googleapis.com/css?family=Ubuntu%7COpen+Sans" rel = "stylesheet" type = "text/css">
+  <script src = "/site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <meta name = "viewport" content = "width=device-width, initial-scale=1" />
+  <link href = "/site_libs/bootstrap-3.3.5/css/lumen.min.css" rel = "stylesheet" />
+  <script src = "/site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+  <script src = "/site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+  <script src = "/site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+  <script src = "/site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+  <link href = "/site_libs/tocify-1.9.1/jquery.tocify.css" rel = "stylesheet" />
+  <script src = "/site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+  <script src = "/site_libs/navigation-1.1/tabsets.js"></script>
+  <link href = "/site_libs/highlightjs-9.12.0/default.css" rel = "stylesheet" />
+  <script src = "/site_libs/highlightjs-9.12.0/highlight.js"></script>
+  <link href = "/site_libs/font-awesome-5.1.0/css/all.css" rel = "stylesheet" />
+  <link href = "/site_libs/font-awesome-5.1.0/css/v4-shims.css" rel = "stylesheet" />
+  <link href = "/css/Styles.css" rel = "stylesheet" type = "text/css">
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: #d0d0d0;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+</head>
+
+<div id = "page">
+  <div id = "header">
+    <ul class = "nav-list">
+      <li class = "nav-spacer nav-left">
+        <a></a>
+      </li>
+      <li class = "nav-spacer nav-right">
+        <a></a>
+      </li>
+      <li class = "nav-element nav-left nav-home">
+        <a href = "/">Cristian Sandoval-Pineda</a>
+      </li>
+      <li class = "nav-element nav-left">
+        <a href = "/projects/">Projects</a>
+      </li>
+      <li class = "nav-element nav-left">
+        <a href = "/cv/">CV</a>
+      </li>
+      <li class = "nav-element nav-left">
+        <a href = "/random/">Random</a>
+      </li>
+      <li class = "nav-element nav-right">
+        <a href = "https://www.linkedin.com/in/cesandovalp/">Linkedin</a>
+      </li>
+      <li class = "nav-element nav-right">
+        <a href = "https://github.com/azazelspce">GitHub</a>
+      </li>
+    </ul>
+  </div>
+
+  <div id = "content" class = "scroll">
+    <div class = "container">
+      <div id = "barplots-using-r" class = "section level2 tabset tabset-fade">
+        <h2>Barplots using R</h2>
+        <div id = "code" class = "section level3">
+          <h3>Code</h3>
+          <pre class = "r">
+            <code>
+              request_user  = GET( &quot;https://api.github.com/user&quot;, gtoken )
+              request_repos = GET( &quot;https://api.github.com/user/repos?per_page=100&quot;, gtoken )
+
+              process_request = function( x ) { fromJSON( toJSON( content( x ) ) ) }
+
+              stop_for_status( request_user )
+              stop_for_status( request_repos )
+
+              user_data_frame  = process_request( request_user )
+              repos_data_frame = process_request( request_repos )
+
+              user_name = user_data_frame$login
+
+              user_rows = grepl( user_name, repos_data_frame$full_name )
+              repos_data_frame = repos_data_frame[user_rows, ]
+              languages_url = repos_data_frame$languages_url
+
+              result = lapply( languages_url, function( x ) process_request( GET( x, gtoken ) ) )
+              valid_index = c( sapply( result, length ) != 0 )
+              result = result[valid_index]
+              repos_data_frame = repos_data_frame[valid_index, ]
+
+              for( i in 1:length( result ) )
+                result[[i]]$private = unlist( repos_data_frame[i, ]$private )
+
+              all_names   = vector()
+              names_count = vector()
+              names_size  = vector()
+
+              for( item in result )
+              {
+                if( !item$private )
+                  for( name in names( item )[-length( item )] )
+                  {
+                    if( name %in% all_names )
+                    {
+                      names_size[name]  = names_size[name] + item[[name]]
+                      names_count[name] = names_count[name] + 1
+                    } else
+                    {
+                      all_names         = c( all_names, name )
+                      names_size[name]  = item[[name]]
+                      names_count[name] = 1
+                    }
+                  }
+              }
+
+              names_size  = names_size[order( names_size )]
+              names_count = names_count[order( names_count )]
+            </code>
+          </pre>
+        </div>
+        <div id = "my-github-code-by-bytes" class = "section level3">
+          <h3>My Github code by bytes</h3>
+          <pre class = "r">
+            <code>
+              barplot( names_size, las = 2, cex.names = 0.9 )
+            </code>
+          </pre>
+          <p>
+            <img src = "/random_files/figure-html/unnamed-chunk-2-1.png" width = "672" />
+          </p>
+        </div>
+        <div id = "my-github-code-by-projects" class = "section level3">
+          <h3>My Github code by projects</h3>
+          <pre class = "r">
+            <code>
+              barplot( names_count, las = 2, cex.names = 0.9 )
+            </code>
+          </pre>
+          <p>
+            <img src="/random_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+          </p>
+        </div>
+      </div>
+      <div id = "spider-chart-using-d3.js" class = "section level2 tabset tabset-fade">
+        <h2>Spider chart using D3.js</h2>
+        <p>This chart shows how I spend my time.</p>
+        <div id = "code-1" class = "section level3">
+          <h3>Code</h3>
+          <pre class = "r">
+            <code>
+              data_string = &quot;var data = [\n[\n__to_insert__]\n];&quot;
+              trait_string = &quot;{axis:\&quot;__axis__\&quot;, value:__value__},\n&quot;
+
+              all_traits = vector()
+              AddTrait = function( name_string, value )
+              {
+                new_trait = gsub( &quot;__axis__&quot;, name_string, trait_string )
+                new_trait = gsub( &quot;__value__&quot;, value, new_trait )
+                all_traits &lt;&lt;- c( all_traits, new_trait )
+              }
+
+              AddTrait( &quot;Coding&quot;              , 0.98 )
+              AddTrait( &quot;Animated / TV series&quot;, 0.65 )
+              AddTrait( &quot;Anime&quot;               , 0.70 )
+              AddTrait( &quot;Bike&quot;                , 0.85 )
+              AddTrait( &quot;Walk&quot;                , 0.80 )
+              AddTrait( &quot;Social life&quot;         , 0.01 )
+              AddTrait( &quot;Videogames&quot;          , 0.99 )
+              AddTrait( &quot;YouTube&quot;             , 0.90 )
+              AddTrait( &quot;Sleep&quot;               , 0.82 )
+              AddTrait( &quot;Cats&quot;                , 1.00 )
+              AddTrait( &quot;Comics&quot;              , 0.20 )
+              AddTrait( &quot;Manga&quot;               , 0.30 )
+              AddTrait( &quot;Reddit&quot;              , 0.33 )
+              AddTrait( &quot;Facebook&quot;            , 0.17 )
+
+              data_string = gsub( &quot;__to_insert__&quot;, paste( all_traits, collapse = &quot;&quot; ), data_string )
+
+              html_string = paste( readLines( &quot;spider_fragment.txt&quot; ), collapse = &quot;\n&quot; )
+
+              html_string = gsub( &quot;__json_data__&quot;, data_string   , html_string )
+              html_string = gsub( &quot;__max_value__&quot;, 1             , html_string )
+              html_string = gsub( &quot;__div_name__&quot; , &quot;ByCountChart&quot;, html_string )
+              html_string = gsub( &quot;__width__&quot;    , 600           , html_string )
+            </code>
+          </pre>
+        </div>
+        <div id = "how-i-spend-my-time" class = "section level3">
+          <h3>How I spend my time</h3>
+          <pre class = "r">
+            <code>cat( html_string )</code>
+          </pre>
+          <script src = "https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset = "utf-8"></script>
+          <div class = "ByCountChart" style = "text-align: center;"></div>
+          <script src = "/js/radarChart.js"></script>
+          <script>
+            var margin = { top: 100, right: 100, bottom: 100, left: 100 },
+            width = Math.min( 600, window.innerWidth - 10 ) - margin.left - margin.right,
+            height = Math.min( width, window.innerHeight - margin.top - margin.bottom - 20 );
+
+            var data = [
+                         [
+                           {axis:"Coding", value:0.98},
+                           {axis:"Animated / TV series", value:0.65},
+                           {axis:"Anime", value:0.7},
+                           {axis:"Bike", value:0.85},
+                           {axis:"Walk", value:0.8},
+                           {axis:"Social life", value:0.01},
+                           {axis:"Videogames", value:0.99},
+                           {axis:"YouTube", value:0.9},
+                           {axis:"Sleep", value:0.82},
+                           {axis:"Cats", value:1},
+                           {axis:"Comics", value:0.2},
+                           {axis:"Manga", value:0.3},
+                           {axis:"Reddit", value:0.33},
+                           {axis:"Facebook", value:0.17},
+                         ]
+                       ];
+
+            var color = d3.scale.ordinal().range( ["#EDC951","#CC333F","#00A0B0"] );
+
+            var radarChartOptions =
+            {
+              w: width,
+              h: height,
+              margin: margin,
+              maxValue: 1,
+              levels: 5,
+              roundStrokes: true,
+              color: color
+            };
+
+            RadarChart( ".ByCountChart", data, radarChartOptions );
+          </script>
+        </div>
+      </div>
+      <div id = "tree-diagram-using-d3.js" class = "section level2 tabset tabset-fade">
+        <h2>Tree diagram using D3.js</h2>
+        <p>This diagram shows how optimization algorithms and search techniques are related.</p>
+        <div id = "code-2" class = "section level3">
+          <h3>Code</h3>
+          <pre class = "r">
+            <code>
+              base = &quot;var data = [{\n__data__\n}];\n&quot;
+
+              AddNode = function( node_name, parent_node = &quot;root&quot;, has_children = F )
+              {
+                children_str = &quot;\&quot;name\&quot;:\&quot;__name__\&quot;,\n\&quot;children\&quot;:\n[\n__children___name____\n]&quot;
+
+                if( parent_node == &quot;root&quot; )
+                {
+                  if( has_children )
+                    result = gsub( &quot;__data__&quot;, children_str, base )
+                  else
+                    result = gsub( &quot;__data__&quot;, &quot;\&quot;name\&quot;:\&quot;__name__\&quot;&quot;, base )
+                  return( gsub( &quot;__name__&quot;, node_name, result ) )
+                }
+                else
+                {
+                  parent_str = &quot;__children___name____&quot;
+                  parent_str = gsub( &quot;__name__&quot;, parent_node, parent_str )
+
+                  if( has_children )
+                    children_str = paste( c( &quot;{\n&quot;, children_str, &quot;\n},\n&quot;, parent_str ), collapse = &quot;&quot; )
+                  else
+                    children_str = paste( c( &quot;{\n\&quot;name\&quot;:\&quot;__name__\&quot;\n},\n&quot;, parent_str ), collapse = &quot;&quot; )
+                  result = gsub( parent_str, children_str, base )
+                  return( gsub( &quot;__name__&quot;, node_name, result ) )
+                }
+              }
+
+              base = AddNode( node_name = &quot;Search methods&quot;, has_children = T )
+
+              base = AddNode( node_name = &quot;Numerical methods&quot;     , parent_node = &quot;Search methods&quot;, has_children = T )
+              base = AddNode( node_name = &quot;Stochastic search&quot;     , parent_node = &quot;Search methods&quot;, has_children = T )
+              base = AddNode( node_name = &quot;Enumerative techniques&quot;, parent_node = &quot;Search methods&quot;, has_children = F )
+
+              base = AddNode( node_name = &quot;Direct&quot;  , parent_node = &quot;Numerical methods&quot;, has_children = F )
+              base = AddNode( node_name = &quot;Indirect&quot;, parent_node = &quot;Numerical methods&quot;, has_children = F )
+
+              base = AddNode( node_name = &quot;Single point&quot;  , parent_node = &quot;Stochastic search&quot;, has_children = F )
+              base = AddNode( node_name = &quot;Multiple point&quot;, parent_node = &quot;Stochastic search&quot;, has_children = T )
+
+              base = AddNode( node_name = &quot;Swarm intelligence&quot;     , parent_node = &quot;Multiple point&quot;, has_children = F )
+              base = AddNode( node_name = &quot;Evolutionary strategies&quot;, parent_node = &quot;Multiple point&quot;, has_children = T )
+
+              base = AddNode( node_name = &quot;Genetic algorithms&quot;, parent_node = &quot;Evolutionary strategies&quot;, has_children = F )
+
+              base = strsplit( base, &quot;\n&quot; )[[1]]
+              base = gsub( &quot;__.*__&quot;, &quot;&quot;, base )
+              base = paste( base, collapse = &quot;&quot; )
+              base = gsub( &quot;,]&quot;, &quot;]&quot;, base )
+
+              html_string = paste( readLines( &quot;tree_diagram_fragment.txt&quot; ), collapse = &quot;\n&quot; )
+
+              html_string = gsub( &quot;__json_data__&quot;, base               , html_string )
+              html_string = gsub( &quot;__div_name__&quot; , &quot;OptimizationChart&quot;, html_string )
+              html_string = gsub( &quot;__width__&quot;    , 800               , html_string )
+            </code>
+          </pre>
+        </div>
+        <div id = "a-tree-visualization-for-optimization-techniques" class = "section level3">
+          <h3>A tree visualization for optimization techniques</h3>
+          <pre class = "r"><code>cat( html_string )</code></pre>
+          <script src = "http://d3js.org/d3.v3.min.js"></script>
+          <div class = "OptimizationChart" style = "text-align: center;"></div>
+          <style>
+            .node { cursor: pointer; }
+            .node text { font: 12px sans-serif; }
+            .link
+            {
+              fill: none;
+              stroke: #ccc;
+              stroke-width: 2px;
+            }
+          </style>
+          <script>
+            var data = [{"name":"Search methods","children":[{"name":"Numerical methods","children":[{"name":"Direct"},{"name":"Indirect"}]},{"name":"Stochastic search","children":[{"name":"Single point"},{"name":"Multiple point","children":[{"name":"Swarm intelligence"},{"name":"Evolutionary strategies","children":[{"name":"Genetic algorithms"}]}]}]},{"name":"Enumerative techniques"}]}];
+            // ************** Generate the tree diagram    *****************
+            var margin = { top: 100, right: 100, bottom: 100, left: 100 },
+                width = Math.min( 800, window.innerWidth - 10 ) - margin.left - margin.right,
+                height = Math.min( width, window.innerHeight - margin.top - margin.bottom - 20 );
+            var i = 0,
+                duration = 750,
+                root;
+            var tree = d3.layout.tree()
+                         .size( [height, width] );
+            var diagonal = d3.svg.diagonal()
+                             .projection( function( d ) { return [d.x, d.y]; } );
+            var svg = d3.select( ".OptimizationChart" )
+                        .append( "svg" )
+                        .attr( "width", width + margin.right + margin.left )
+                        .attr( "height", height + margin.top + margin.bottom )
+                        .append( "g" )
+                        .attr( "transform", "translate(" + margin.left + "," + margin.top + ")" );
+            root = data[0];
+            root.x0 = height / 2;
+            root.y0 = 0;
+            update( root );
+            d3.select( self.frameElement ).style( "height", "500px" );
+
+            function update( source )
+            {
+              // Compute the new tree layout.
+              var nodes = tree.nodes( root ),
+                  links = tree.links( nodes );
+
+              nodes.forEach( function( d )
+                             {
+                               d.y = d.depth * 120;
+                               if( d.parent )
+                                 d.x = d.x;
+                               else
+                                 d.x = 0;
+                               //console.log(d);
+                               var counter = 0;
+                               if( d.children )
+                                 d.children.forEach( function( c )
+                                                     {
+                                                       c.x = d.x + 130 * counter;
+                                                       if( c.children )
+                                                         counter = counter + c.children.length;
+                                                       else
+                                                         counter++;
+                                                       console.log( c );
+                                                     } );
+                             } );
+
+              var node = svg.selectAll( "g.node" )
+                            .data( nodes, function( d ) { return d.id || (d.id = ++i); } );
+              var nodeEnter = node.enter()
+                                  .append( "g" )
+                                  .attr( "class", "node" )
+                                  .attr( "transform", function( d ) { return "translate(" + source.x0 + "," + source.y0 + ")"; } );
+              nodeEnter.append( "rect" )
+                       .attr('x', -60 )
+                       .attr( "href", "#" )
+                       .attr( "width", 120 )
+                       .attr( "height", 50 )
+                       .attr( "rx", 30 )
+                       .attr( "ry", 50 )
+                       .attr( "stroke", "lightsteelblue" )
+                       .attr( "stroke-width", "3px" )
+                       .style("fill", 'white');
+              nodeEnter.append( "foreignObject" )
+                       .attr('x', -50 )
+                       .attr( "y", 8 )
+                       .attr( "width", 100 )
+                       .attr( "height", 50 )
+                       .append( "xhtml:div" )
+                       .attr( "style", "text-align: center;" )
+                       .style( "font", "14px 'Helvetica Neue'" )
+                       .html( function( d ) { return d.name; } );
+
+              var nodeUpdate = node.transition()
+                                   .duration( duration )
+                                   .attr( "transform", function( d ) { return "translate(" + d.x + "," + d.y + ")"; } );
+
+              nodeUpdate.select( "text" )
+                        .style( "fill-opacity", 1 );
+              // Update the links…
+              var link = svg.selectAll( "path.link" )
+                            .data( links, function( d ) { return d.target.id; } );
+              // Enter any new links at the parent's previous position.
+              link.enter().insert( "path", "g" )
+                          .attr( "class", "link" )
+                          .attr( "d", function( d )
+                                      {
+                                        var o = { x: source.x0, y: source.y0 };
+                                        return diagonal( { source: o, target: o } );
+                                      } );
+              // Transition links to their new position.
+              link.transition()
+                  .duration( duration )
+                  .attr( "d", diagonal );
+              // Stash the old positions for transition.
+              nodes.forEach( function( d )
+                              {
+                                d.x0 = d.x;
+                                d.y0 = d.y;
+                              } );
+            }
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<div id = "footer">
+  <span id = "footer_text">
+    © Cristian Sandoval-Pineda
+  </span>
+</div>
+</html>

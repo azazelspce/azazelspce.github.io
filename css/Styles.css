@@ -1,0 +1,159 @@
+html,
+body
+{
+  margin          :  0px !important;
+  padding         :  0px !important;
+  font-family     : "Open Sans", Verdana, Helvetica, Arial, sans-serif !important;
+}
+
+#page
+{
+  min-height      :   100vh !important;
+  background-color: #FCF4EC !important;
+  margin-bottom   :   -50px !important;
+}
+
+#header
+{
+  margin-bottom   :    15px !important;
+  background-color: #050505 !important;
+  margin          :      0% !important;
+  padding-bottom  :     3px !important;
+  padding-top     :     3px !important;
+}
+
+#footer
+{
+  height  :     50px !important;
+  overflow:   hidden !important;
+  position: absolute !important;
+  width   :     100% !important;
+}
+
+#footer_text
+{
+  position  : relative !important;
+  text-align:   center !important;
+  width     :     100% !important;
+  display   :    block !important;
+  padding   :     10px !important;
+}
+
+#content
+{
+  margin-top      :    25px !important;
+  margin-bottom   :     0px !important;
+  background-color: #FCF4EC !important;
+  margin          :      0% !important;
+  padding-bottom  :     3px !important;
+  padding-top     :    30px !important;
+  padding-left    :    11vw !important;
+  padding-right   :    11vw !important;
+  display         :   table !important;
+}
+
+.aux_text
+{
+  font-weight:  100 !important;
+  font-size  : 13px !important;
+}
+
+.profile_photo
+{
+  margin-right: 20px !important;
+  float       : left !important;
+  max-width   :  45% !important;
+}
+
+ul.nav-list
+{
+  list-style-type:   none !important;
+  margin         :    0px !important;
+  padding        :    0px !important;
+  overflow       : hidden !important;
+  width          :   100% !important;
+}
+
+.nav-element a
+{
+  display        :  block !important;
+  padding        :   10px !important;
+  margin         :    0px !important;
+  color          :   #EEE !important;
+  text-align     : center !important;
+  text-decoration:   none !important;
+}
+
+.nav-spacer a
+{
+  display     : block !important;
+  padding-left:  10vw !important;
+  padding-top :  10px !important;
+  margin      :   0px !important;
+}
+
+.nav-home a
+{
+  padding-right: 4vw !important;
+}
+
+.nav-element a:active,
+.nav-element a:hover,
+.nav-element a:focus
+{
+  color          :     #FFF !important;
+  text-decoration: overline !important;
+}
+
+li.nav-left
+{
+  float: left !important;
+}
+
+li.nav-right
+{
+  float: right !important;
+}
+
+.container
+{
+  font-family   : "Open Sans", Verdana, Helvetica, Arial, sans-serif !important;
+  padding-bottom: 50px !important;
+}
+
+h1, h2, h3, h4
+{
+  font-weight: 400 !important;
+  line-height: 1.1 !important;
+}
+
+h1
+{
+  font-size: 50px !important;
+}
+
+.obfuscated
+{
+  font-family: monospace !important;
+  font-size  : 20px !important;
+}
+
+div.scroll
+{
+  height: 90vh !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+@media screen and (max-width: 735px)
+{
+  li.nav-left
+  {
+    float: none !important;
+  }
+
+  li.nav-right
+  {
+    float: none !important;
+  }
+}
